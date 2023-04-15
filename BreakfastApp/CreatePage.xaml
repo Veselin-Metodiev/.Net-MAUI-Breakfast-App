@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BreakfastApp.ViewModels"
+             x:DataType="viewmodels:CreateViewModel"
+             x:Class="BreakfastApp.CreatePage"
+             Title="CreatePage">
+
+    <Grid RowDefinitions="auto, auto"
+          RowSpacing="20">
+
+        <VerticalStackLayout Grid.Row="0">
+            <Label Text="Create Your Breakfast"
+               FontSize="25"
+               HorizontalOptions="Center"
+               Padding="20"/>
+
+            <Entry Placeholder="Name"
+               FontSize="18"
+               Margin="5"
+               HorizontalOptions="Fill"
+               ClearButtonVisibility="WhileEditing"
+               x:Name="Name"/>
+            <Entry Placeholder="ImageUrl"
+               FontSize="18"
+               Margin="5"
+               HorizontalOptions="Fill"
+               ClearButtonVisibility="WhileEditing"
+               x:Name="ImageURI"/>
+            <Entry Placeholder="Description"
+               FontSize="18"
+               Margin="5"
+               HorizontalOptions="Fill"
+               ClearButtonVisibility="WhileEditing"
+               x:Name="Description"/>
+            <Entry Placeholder="Savory tags"
+               FontSize="18"
+               Margin="5"
+               HorizontalOptions="Fill"
+               ClearButtonVisibility="WhileEditing"
+               x:Name="Savory"/>
+            <Entry Placeholder="Sweet tags"
+               FontSize="18"
+               Margin="5"
+               HorizontalOptions="Fill"
+               ClearButtonVisibility="WhileEditing"
+               x:Name="Sweet"/>
+
+
+        </VerticalStackLayout>
+
+        <Button Text="Create"
+                FontSize="23" 
+                Grid.Row="1"
+                Margin="5"
+                BackgroundColor="LightBlue"
+                Command="{Binding CreateCommand}"/>
+    </Grid>
+</ContentPage>

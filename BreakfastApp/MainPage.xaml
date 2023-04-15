@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BreakfastApp.ViewModels"
+             xmlns:models="clr-namespace:BreakfastApp.Models"
+             x:DataType="viewmodels:BreakfastViewModel"
+             x:Class="BreakfastApp.MainPage">
+
+    <Grid Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO" />
+            <RowDefinition Height="AUTO" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="AUTO" />
+        </Grid.RowDefinitions>
+
+        <!-- Your Breakfasts -->
+        <HorizontalStackLayout>
+            <Label FontSize="24" Text="Your " />
+            <Label FontSize="24" Text="Breakfasts"/>
+        </HorizontalStackLayout>
+
+        <!-- Breakfasts you have created -->
+        <Label Text="Breakfasts you have created"
+               Grid.Row="1"
+               TextColor="#555" />
+
+        <!-- Scrollable list of Breakfasts -->
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Breakfasts}"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="20" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Breakfast">
+                    <Border MinimumHeightRequest="315"
+                            Stroke="#efefef">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding Image}"
+                                   Aspect="AspectFill" />
+
+                            <Grid Grid.Column="1" Padding="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="AUTO" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="AUTO" />
+                                    <RowDefinition Height="AUTO" />
+                                </Grid.RowDefinitions>
+
+                                <!-- Name -->
+                                <Label Text="{Binding Name}"
+                                       FontSize="24"/>
+
+                                <!-- Description -->
+                                <Label Text="{Binding Description}"
+                                       Grid.Row="1"
+                                       Padding="0,8,0,0"
+                                       TextColor="#555" />
+
+                                <!-- Savory -->
+                                <FlexLayout
+                                        BindableLayout.ItemsSource="{Binding Savory}"
+                                        Grid.Row="2"
+                                        Wrap="Wrap"
+                                        AlignItems="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BackgroundColor="LightCyan"
+                                                        StrokeThickness="1"
+                                                        Stroke="LightCyan"
+                                                        Margin="1"
+                                                        Padding="4">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="7"/>
+                                                </Border.StrokeShape>
+                                                <Label Text="{Binding}"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
+
+                                <!-- Sweet -->
+                                <FlexLayout
+                                        BindableLayout.ItemsSource="{Binding Sweet}"
+                                        Grid.Row="3"
+                                        Wrap="Wrap"
+                                        AlignItems="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BackgroundColor="Pink"
+                                                        StrokeThickness="1"
+                                                        Stroke="Pink"
+                                                        Margin="1"
+                                                        Padding="4">
+                                                <Border.StrokeShape>
+                                                    <RoundRectangle CornerRadius="7"/>
+                                                </Border.StrokeShape>
+                                                <Label Text="{Binding}"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!-- Create New Button Breakfast Button -->
+        <Button Text="Create New Breakfast"
+                BackgroundColor="Black"
+                Padding="16"
+                CornerRadius="2"
+                Grid.Row="3"
+                Command="{Binding GoToCreateCommand}"/>
+    </Grid>
+
+</ContentPage>
