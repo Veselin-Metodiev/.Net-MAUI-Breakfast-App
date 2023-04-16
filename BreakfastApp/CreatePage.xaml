@@ -20,31 +20,40 @@
                Margin="5"
                HorizontalOptions="Fill"
                ClearButtonVisibility="WhileEditing"
-               x:Name="Name"/>
+               x:Name="Name"
+               Text="{Binding Name}"/>
+
             <Entry Placeholder="ImageUrl"
                FontSize="18"
                Margin="5"
                HorizontalOptions="Fill"
                ClearButtonVisibility="WhileEditing"
-               x:Name="ImageURI"/>
+               x:Name="ImageUri"
+               Text="{Binding ImageUri}"/>
+
             <Entry Placeholder="Description"
                FontSize="18"
                Margin="5"
                HorizontalOptions="Fill"
                ClearButtonVisibility="WhileEditing"
-               x:Name="Description"/>
+               x:Name="Description"
+               Text="{Binding Description}"/>
+
             <Entry Placeholder="Savory tags"
                FontSize="18"
                Margin="5"
                HorizontalOptions="Fill"
                ClearButtonVisibility="WhileEditing"
-               x:Name="Savory"/>
+               x:Name="Savory"
+               Text="{Binding Savory}"/>
+
             <Entry Placeholder="Sweet tags"
                FontSize="18"
                Margin="5"
                HorizontalOptions="Fill"
                ClearButtonVisibility="WhileEditing"
-               x:Name="Sweet"/>
+               x:Name="Sweet"
+               Text="{Binding Sweet}"/>
 
 
         </VerticalStackLayout>

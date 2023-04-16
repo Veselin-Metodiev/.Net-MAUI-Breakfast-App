@@ -26,94 +26,99 @@
                TextColor="#555" />
 
         <!-- Scrollable list of Breakfasts -->
-        <CollectionView Grid.Row="2"
+        <RefreshView Grid.Row="2"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+                <CollectionView
                         ItemsSource="{Binding Breakfasts}"
                         SelectionMode="None">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical"
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
                                    ItemSpacing="20" />
-            </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Breakfast">
-                    <Border MinimumHeightRequest="315"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Breakfast">
+                            <Border MinimumHeightRequest="315"
                             Stroke="#efefef">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                    </Grid.ColumnDefinitions>
 
-                            <Image Source="{Binding Image}"
+                                    <Image Source="{Binding Image}"
                                    Aspect="AspectFill" />
 
-                            <Grid Grid.Column="1" Padding="16">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="AUTO" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="AUTO" />
-                                    <RowDefinition Height="AUTO" />
-                                </Grid.RowDefinitions>
+                                    <Grid Grid.Column="1" Padding="16">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="AUTO" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="AUTO" />
+                                            <RowDefinition Height="AUTO" />
+                                        </Grid.RowDefinitions>
 
-                                <!-- Name -->
-                                <Label Text="{Binding Name}"
+                                        <!-- Name -->
+                                        <Label Text="{Binding Name}"
                                        FontSize="24"/>
 
-                                <!-- Description -->
-                                <Label Text="{Binding Description}"
+                                        <!-- Description -->
+                                        <Label Text="{Binding Description}"
                                        Grid.Row="1"
                                        Padding="0,8,0,0"
                                        TextColor="#555" />
 
-                                <!-- Savory -->
-                                <FlexLayout
+                                        <!-- Savory -->
+                                        <FlexLayout
                                         BindableLayout.ItemsSource="{Binding Savory}"
                                         Grid.Row="2"
                                         Wrap="Wrap"
                                         AlignItems="Start">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BackgroundColor="LightCyan"
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BackgroundColor="LightCyan"
                                                         StrokeThickness="1"
                                                         Stroke="LightCyan"
                                                         Margin="1"
                                                         Padding="4">
-                                                <Border.StrokeShape>
-                                                    <RoundRectangle CornerRadius="7"/>
-                                                </Border.StrokeShape>
-                                                <Label Text="{Binding}"/>
-                                            </Border>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </FlexLayout>
+                                                        <Border.StrokeShape>
+                                                            <RoundRectangle CornerRadius="7"/>
+                                                        </Border.StrokeShape>
+                                                        <Label Text="{Binding}"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
 
-                                <!-- Sweet -->
-                                <FlexLayout
+                                        <!-- Sweet -->
+                                        <FlexLayout
                                         BindableLayout.ItemsSource="{Binding Sweet}"
                                         Grid.Row="3"
                                         Wrap="Wrap"
                                         AlignItems="Start">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border BackgroundColor="Pink"
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BackgroundColor="Pink"
                                                         StrokeThickness="1"
                                                         Stroke="Pink"
                                                         Margin="1"
                                                         Padding="4">
-                                                <Border.StrokeShape>
-                                                    <RoundRectangle CornerRadius="7"/>
-                                                </Border.StrokeShape>
-                                                <Label Text="{Binding}"/>
-                                            </Border>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </FlexLayout>
-                            </Grid>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                                                        <Border.StrokeShape>
+                                                            <RoundRectangle CornerRadius="7"/>
+                                                        </Border.StrokeShape>
+                                                        <Label Text="{Binding}"/>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+        </RefreshView>
+
         <!-- Create New Button Breakfast Button -->
         <Button Text="Create New Breakfast"
                 BackgroundColor="Black"
