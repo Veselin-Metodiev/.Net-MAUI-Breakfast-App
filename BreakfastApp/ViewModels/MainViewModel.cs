@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace BreakfastApp.ViewModels
 {
-    public partial class BreakfastViewModel : ObservableObject
+    public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
         private static List<Breakfast> breakfasts;
@@ -14,7 +14,7 @@ namespace BreakfastApp.ViewModels
 
         BreakfastRepository database;
 
-        public BreakfastViewModel()
+        public MainViewModel()
         {
             this.database = new BreakfastRepository();
 

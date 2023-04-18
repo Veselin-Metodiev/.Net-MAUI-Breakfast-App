@@ -4,7 +4,7 @@ namespace BreakfastApp;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage(BreakfastViewModel vm)
+    public MainPage(MainViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;

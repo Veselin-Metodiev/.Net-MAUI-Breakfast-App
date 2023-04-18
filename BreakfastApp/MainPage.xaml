@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:BreakfastApp.ViewModels"
              xmlns:models="clr-namespace:BreakfastApp.Models"
-             x:DataType="viewmodels:BreakfastViewModel"
+             x:DataType="viewmodels:MainViewModel"
              x:Class="BreakfastApp.MainPage">
 
     <Grid Padding="16">
@@ -120,7 +120,7 @@
                                                 MaximumHeightRequest="35"
                                                 FontAttributes="Bold"
                                                 BackgroundColor="MediumVioletRed"
-                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:BreakfastViewModel}}, Path=DeleteCommand}"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DeleteCommand}"
                                                 CommandParameter="{Binding Id}"/>
                                 </Grid>
                             </Grid>
