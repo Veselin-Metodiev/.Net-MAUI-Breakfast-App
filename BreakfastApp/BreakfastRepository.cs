@@ -14,24 +14,17 @@ namespace BreakfastApp
             _database.CreateTable<BreakfastDto>();
         }
 
-        public List<BreakfastDto> List()
-        {
-            return _database.Table<BreakfastDto>().ToList();
-        }
+        public List<BreakfastDto> GetAllItems() =>
+            _database.Table<BreakfastDto>().ToList();
 
-        public int Create(BreakfastDto entity)
-        {
-            return _database.Insert(entity);
-        }
+        public int Create(BreakfastDto entity) =>
+            _database.Insert(entity);
 
-        public int Update(BreakfastDto entity)
-        {
-            return _database.Update(entity);
-        }
+        public int Delete(int id) =>
+            _database.Delete(_database.Table<BreakfastDto>()
+                .FirstOrDefault(b => b.Id == id));
 
-        public int Delete(BreakfastDto entity)
-        {
-            return _database.Delete(entity);
-        }
+        public int Reset() =>
+            _database.DeleteAll<BreakfastDto>();
     }
 }

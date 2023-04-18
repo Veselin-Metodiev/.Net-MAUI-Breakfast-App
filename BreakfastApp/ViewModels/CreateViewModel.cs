@@ -41,7 +41,7 @@ namespace BreakfastApp.ViewModels
                     throw new InvalidDataException();
                 }
 
-                if (!Uri.TryCreate(ImageUri, UriKind.RelativeOrAbsolute, out Uri image))
+                if (!Uri.IsWellFormedUriString(ImageUri, UriKind.Absolute))
                 {
                     throw new UriFormatException();
                 }
@@ -52,6 +52,7 @@ namespace BreakfastApp.ViewModels
                 {
                     await Application.Current!.MainPage!.DisplayAlert(Constants.IncorrectDataTitle,
                         Constants.IncorrectDataMessage, Constants.IncorrectDataBtnText);
+                    return;
                 }
 
                 await Application.Current!.MainPage!.DisplayAlert(Constants.IncorrectUriTitle,
@@ -69,7 +70,18 @@ namespace BreakfastApp.ViewModels
             };
 
             database.Create(breakfast);
+            ResetUserInput();
+
             await Application.Current!.MainPage!.Navigation.PopAsync();
+        }
+
+        private void ResetUserInput()
+        {
+            Name = String.Empty;
+            ImageUri = String.Empty;
+            Description = String.Empty;
+            Sweet = String.Empty;
+            Savory = String.Empty;
         }
     }
 }

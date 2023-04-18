@@ -18,7 +18,11 @@ namespace BreakfastApp.ViewModels
         {
             this.database = new BreakfastRepository();
 
-            InitialItemsLoad();
+            if (database.GetAllItems().Count == 0)
+            {
+                InitialItemsLoad();
+            }
+
             LoadBreakfast();
         }
 
@@ -46,12 +50,13 @@ namespace BreakfastApp.ViewModels
         public void LoadBreakfast()
         {
             Breakfasts = new List<Breakfast>();
-            List<BreakfastDto> breakfastDtos = database.List();
+            List<BreakfastDto> breakfastDtos = database.GetAllItems();
 
             foreach (BreakfastDto breakfastDto in breakfastDtos)
             {
                 Breakfast breakfast = new()
                 {
+                    Id = breakfastDto.Id,
                     Name = breakfastDto.Name,
                     Description = breakfastDto.Description,
                     Image = new Uri(breakfastDto.Image, UriKind.RelativeOrAbsolute),
@@ -62,37 +67,25 @@ namespace BreakfastApp.ViewModels
                 Breakfasts.Add(breakfast);
             }
 
-        }
-
-        public void ReloadBreakfast()
-        {
-            Breakfasts.Clear();
-            List<BreakfastDto> breakfastDtos = database.List();
-
-            foreach (BreakfastDto breakfastDto in breakfastDtos)
-            {
-                Breakfast breakfast = new()
-                {
-                    Name = breakfastDto.Name,
-                    Description = breakfastDto.Description,
-                    Image = new Uri(breakfastDto.Image, UriKind.RelativeOrAbsolute),
-                    Savory = breakfastDto.Savory.Split(", ").ToList(),
-                    Sweet = breakfastDto.Sweet.Split(", ").ToList()
-                };
-
-                Breakfasts.Add(breakfast);
-            }
         }
 
         [RelayCommand]
         void Refresh()
         {
-            ReloadBreakfast();
+            LoadBreakfast();
             IsRefreshing = false;
         }
 
         [RelayCommand]
+        void Delete(int id)
+        {
+            database.Delete(id);
+            LoadBreakfast();
+        }
+
+        [RelayCommand]
         private async Task GoToCreate() =>
-            await Application.Current!.MainPage!.Navigation.PushAsync(new CreatePage(new CreateViewModel(database)));
+            await Application.Current!.MainPage!.Navigation
+                .PushAsync(new CreatePage(new CreateViewModel(database)));
     }
 }
