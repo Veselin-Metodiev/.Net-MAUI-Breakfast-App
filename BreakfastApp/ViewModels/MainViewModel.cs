@@ -7,12 +7,12 @@ namespace BreakfastApp.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        private static List<Breakfast> breakfasts;
+        private List<Breakfast> breakfasts;
 
         [ObservableProperty]
-        private static bool isRefreshing;
+        private bool isRefreshing;
 
-        BreakfastRepository database;
+        private readonly BreakfastRepository database;
 
         public MainViewModel()
         {
@@ -26,7 +26,7 @@ namespace BreakfastApp.ViewModels
             LoadBreakfast();
         }
 
-        public void InitialItemsLoad()
+        private void InitialItemsLoad()
         {
             database.Create(new BreakfastDto
             {
@@ -70,27 +70,27 @@ namespace BreakfastApp.ViewModels
         }
 
         [RelayCommand]
-        void Refresh()
+        private void Refresh()
         {
             LoadBreakfast();
             IsRefreshing = false;
         }
 
         [RelayCommand]
-        void Delete(int id)
+        private void Delete(int id)
         {
             database.Delete(id);
             LoadBreakfast();
         }
 
         [RelayCommand]
-        async Task GoToUpdate(int id) =>
+        private async Task GoToUpdate(int id) =>
             await Application.Current!.MainPage!.Navigation
                 .PushAsync(new UpdatePage(new UpdateViewModel(id, database)));
         
 
         [RelayCommand]
-        async Task GoToCreate() =>
+        private async Task GoToCreate() =>
             await Application.Current!.MainPage!.Navigation
                 .PushAsync(new CreatePage(new CreateViewModel(database)));
     }

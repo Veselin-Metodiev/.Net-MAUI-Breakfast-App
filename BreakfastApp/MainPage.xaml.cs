@@ -4,7 +4,7 @@ namespace BreakfastApp;
 
 public partial class MainPage : ContentPage
 {
-    private MainViewModel vm;
+    private readonly MainViewModel vm;
 
     public MainPage(MainViewModel vm)
     {

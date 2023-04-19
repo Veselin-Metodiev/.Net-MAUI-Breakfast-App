@@ -7,21 +7,21 @@ namespace BreakfastApp.ViewModels
     public partial class CreateViewModel : ObservableObject
     {
         [ObservableProperty]
-        static string name;
+        private string name;
 
         [ObservableProperty]
-        static string imageUri;
+        private string imageUri;
 
         [ObservableProperty]
-        static string description;
+        private string description;
 
         [ObservableProperty]
-        static string savory;
+        private string savory;
 
         [ObservableProperty]
-        static string sweet;
+        private string sweet;
 
-        private BreakfastRepository database;
+        private readonly BreakfastRepository database;
 
         public CreateViewModel(BreakfastRepository database)
         {

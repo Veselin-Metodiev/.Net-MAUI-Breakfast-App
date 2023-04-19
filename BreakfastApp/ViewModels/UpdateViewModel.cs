@@ -6,24 +6,24 @@ namespace BreakfastApp.ViewModels
 {
     public partial class UpdateViewModel : ObservableObject
     {
-        private int id;
+        private readonly int id;
 
         [ObservableProperty]
-        static string name;
+        private string name;
 
         [ObservableProperty]
-        static string imageUri;
+        private string imageUri;
 
         [ObservableProperty]
-        static string description;
+        private string description;
 
         [ObservableProperty]
-        static string savory;
+        private string savory;
 
         [ObservableProperty]
-        static string sweet;
+        private string sweet;
 
-        private BreakfastRepository database;
+        private readonly BreakfastRepository database;
 
         public UpdateViewModel(int id, BreakfastRepository database)
         {
@@ -45,8 +45,37 @@ namespace BreakfastApp.ViewModels
         }
 
         [RelayCommand]
-        private void Update()
+        private async void Update()
         {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Name) ||
+                    string.IsNullOrWhiteSpace(Description) ||
+                    string.IsNullOrWhiteSpace(Savory) ||
+                    string.IsNullOrWhiteSpace(Sweet))
+                {
+                    throw new InvalidDataException();
+                }
+
+                if (!Uri.IsWellFormedUriString(ImageUri, UriKind.Absolute))
+                {
+                    throw new UriFormatException();
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex is InvalidDataException)
+                {
+                    await Application.Current!.MainPage!.DisplayAlert(Constants.IncorrectDataTitle,
+                        Constants.IncorrectDataMessage, Constants.IncorrectDataBtnText);
+                    return;
+                }
+
+                await Application.Current!.MainPage!.DisplayAlert(Constants.IncorrectUriTitle,
+                    Constants.IncorrectUriMessage, Constants.IncorrectUriBtnText);
+                return;
+            }
+
             BreakfastDto breakfastDto = new()
             {
                 Id = id,
@@ -59,7 +88,7 @@ namespace BreakfastApp.ViewModels
 
             database.Update(breakfastDto);
 
-            Application.Current!.MainPage!.Navigation.PopAsync();
+            await Application.Current!.MainPage!.Navigation.PopAsync();
         }
     }
 }
