@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:BreakfastApp.ViewModels"
+             x:DataType="viewmodels:UpdateViewModel"
+             x:Class="BreakfastApp.UpdatePage"
+             Title="UpdatePage">
+
+    <Grid RowDefinitions="auto, auto, auto"
+          RowSpacing="20">
+
+        <VerticalStackLayout Grid.Row="0">
+            <Label Text="Create Your Breakfast"
+                   FontSize="25"
+                   HorizontalOptions="Center"
+                   Padding="20"/>
+
+            <Entry Placeholder="Name"
+                   FontSize="18"
+                   Margin="5"
+                   HorizontalOptions="Fill"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding Name}"/>
+
+            <Entry Placeholder="ImageUrl"
+                   FontSize="18"
+                   Margin="5"
+                   HorizontalOptions="Fill"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding ImageUri}"/>
+
+            <Entry Placeholder="Description"
+                   FontSize="18"
+                   Margin="5"
+                   HorizontalOptions="Fill"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding Description}"/>
+
+            <Entry Placeholder="Savory tags"
+                   FontSize="18"
+                   Margin="5"
+                   HorizontalOptions="Fill"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding Savory}"/>
+            <Entry Placeholder="Sweet tags"
+                   FontSize="18"
+                   Margin="5"
+                   HorizontalOptions="Fill"
+                   ClearButtonVisibility="WhileEditing"
+                   Text="{Binding Sweet}"/>
+        </VerticalStackLayout>
+
+        <Label Grid.Row="1"
+               Text="* Please enter the tags in the following format: tag1, tag2, ... "
+               TextColor="IndianRed"
+               FontSize="14"/>
+
+        <Button Text="Update"
+                FontSize="23" 
+                Grid.Row="2"
+                Margin="5"
+                BackgroundColor="DarkOrange"
+                Command="{Binding UpdateCommand}"/>
+    </Grid>
+</ContentPage>

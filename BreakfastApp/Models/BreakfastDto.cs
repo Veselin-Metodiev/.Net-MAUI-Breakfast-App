@@ -12,7 +12,7 @@ namespace BreakfastApp.Models
 
         public string Description { get; set; }
 
-        public string Image { get; set; }
+        public string ImageUri { get; set; }
 
         public string Savory { get; set; }
 

@@ -5,26 +5,33 @@ namespace BreakfastApp
 {
     public class BreakfastRepository
     {
-        private readonly SQLiteConnection _database;
+        private readonly SQLiteConnection database;
 
         public BreakfastRepository()
         {
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Breakfast.db");
-            _database = new SQLiteConnection(dbPath);
-            _database.CreateTable<BreakfastDto>();
+            database = new SQLiteConnection(dbPath);
+            database.CreateTable<BreakfastDto>();
         }
 
         public List<BreakfastDto> GetAllItems() =>
-            _database.Table<BreakfastDto>().ToList();
+            database.Table<BreakfastDto>().ToList();
 
         public int Create(BreakfastDto entity) =>
-            _database.Insert(entity);
+            database.Insert(entity);
 
         public int Delete(int id) =>
-            _database.Delete(_database.Table<BreakfastDto>()
-                .FirstOrDefault(b => b.Id == id));
+            database.Delete(database.Table<BreakfastDto>()
+                .FirstOrDefault(e => e.Id == id));
 
         public int Reset() =>
-            _database.DeleteAll<BreakfastDto>();
+            database.DeleteAll<BreakfastDto>();
+
+        public BreakfastDto GetItem(int id) =>
+            database.Table<BreakfastDto>()
+                .FirstOrDefault(e => e.Id == id);
+
+        public int Update(BreakfastDto entity) =>
+            database.Update(entity);
     }
 }

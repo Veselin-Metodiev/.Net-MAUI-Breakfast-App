@@ -102,7 +102,7 @@
                                                 <Border BackgroundColor="Pink"
                                                         StrokeThickness="1"
                                                         Stroke="Pink"
-                                                        Margin="1"
+                                                        Margin="2"
                                                         Padding="4">
                                                     <Border.StrokeShape>
                                                         <RoundRectangle CornerRadius="7"/>
@@ -112,16 +112,27 @@
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </FlexLayout>
-                                    
-                                    <!-- Delete Button -->
-                                    <Button Grid.Row="4"
-                                                Text="Delete"
+
+                                    <HorizontalStackLayout Grid.Row="4"
+                                                           Spacing="20"
+                                                           Margin="5">
+                                        <!-- Delete Button -->
+                                        <Button Text="Delete"
                                                 FontSize="14"
-                                                MaximumHeightRequest="35"
+                                                WidthRequest="90"
                                                 FontAttributes="Bold"
                                                 BackgroundColor="MediumVioletRed"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=DeleteCommand}"
                                                 CommandParameter="{Binding Id}"/>
+                                        
+                                        <!-- Update Button -->
+                                        <Button Text="Update"
+                                                FontAttributes="Bold"
+                                                BackgroundColor="DarkOrange"
+                                                WidthRequest="90"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MainViewModel}}, Path=GoToUpdateCommand}"
+                                                CommandParameter="{Binding Id}"/>
+                                    </HorizontalStackLayout>
                                 </Grid>
                             </Grid>
                         </Border>

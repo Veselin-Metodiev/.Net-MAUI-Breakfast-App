@@ -59,7 +59,7 @@
                 FontSize="23" 
                 Grid.Row="2"
                 Margin="5"
-                BackgroundColor="LightBlue"
+                BackgroundColor="Black"
                 Command="{Binding CreateCommand}"/>
     </Grid>
 </ContentPage>

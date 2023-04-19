@@ -16,7 +16,7 @@ namespace BreakfastApp.ViewModels
 
         public MainViewModel()
         {
-            this.database = new BreakfastRepository();
+            database = new BreakfastRepository();
 
             if (database.GetAllItems().Count == 0)
             {
@@ -32,7 +32,7 @@ namespace BreakfastApp.ViewModels
             {
                 Name = "Vegan Sunshine",
                 Description = "Vegan everthing! Join us for a healthy breakfast full of vegan dishes and Cookies",
-                Image = "https://images.unsplash.com/photo-1659984716295-c3d4be94dc4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80",
+                ImageUri = "https://images.unsplash.com/photo-1659984716295-c3d4be94dc4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80",
                 Savory = "Oatmeal, Avocado toast, Omelet, Salad",
                 Sweet = "Cookie"
             });
@@ -41,7 +41,7 @@ namespace BreakfastApp.ViewModels
             {
                 Name = "Breakfast @ Tiffany's",
                 Description = "Hi, I'm Tiffany's ",
-                Image = "https://images.unsplash.com/photo-1620921575116-fb8902865f81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+                ImageUri = "https://images.unsplash.com/photo-1620921575116-fb8902865f81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
                 Savory = "Sandwich, Salad, Omelet",
                 Sweet = "Pancake, Waffle"
             });
@@ -59,7 +59,7 @@ namespace BreakfastApp.ViewModels
                     Id = breakfastDto.Id,
                     Name = breakfastDto.Name,
                     Description = breakfastDto.Description,
-                    Image = new Uri(breakfastDto.Image, UriKind.RelativeOrAbsolute),
+                    Image = new Uri(breakfastDto.ImageUri, UriKind.RelativeOrAbsolute),
                     Savory = breakfastDto.Savory.Split(", ").ToList(),
                     Sweet = breakfastDto.Sweet.Split(", ").ToList()
                 };
@@ -84,7 +84,13 @@ namespace BreakfastApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task GoToCreate() =>
+        async Task GoToUpdate(int id) =>
+            await Application.Current!.MainPage!.Navigation
+                .PushAsync(new UpdatePage(new UpdateViewModel(id, database)));
+        
+
+        [RelayCommand]
+        async Task GoToCreate() =>
             await Application.Current!.MainPage!.Navigation
                 .PushAsync(new CreatePage(new CreateViewModel(database)));
     }

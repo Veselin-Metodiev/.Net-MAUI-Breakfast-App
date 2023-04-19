@@ -64,7 +64,7 @@ namespace BreakfastApp.ViewModels
             {
                 Name = Name,
                 Description = Description,
-                Image = ImageUri,
+                ImageUri = ImageUri,
                 Savory = Savory,
                 Sweet = Sweet
             };
