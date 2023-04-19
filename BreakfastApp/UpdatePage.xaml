@@ -22,12 +22,20 @@
                    ClearButtonVisibility="WhileEditing"
                    Text="{Binding Name}"/>
 
+            <Label Text="  * Required"
+                   TextColor="DarkRed"
+                   FontSize="12"/>
+
             <Entry Placeholder="ImageUrl"
                    FontSize="18"
                    Margin="5"
                    HorizontalOptions="Fill"
                    ClearButtonVisibility="WhileEditing"
                    Text="{Binding ImageUri}"/>
+
+            <Label Text="  * Required"
+                   TextColor="DarkRed"
+                   FontSize="12"/>
 
             <Entry Placeholder="Description"
                    FontSize="18"
@@ -36,12 +44,17 @@
                    ClearButtonVisibility="WhileEditing"
                    Text="{Binding Description}"/>
 
+            <Label Text="  * Required"
+                   TextColor="DarkRed"
+                   FontSize="12"/>
+
             <Entry Placeholder="Savory tags"
                    FontSize="18"
                    Margin="5"
                    HorizontalOptions="Fill"
                    ClearButtonVisibility="WhileEditing"
                    Text="{Binding Savory}"/>
+
             <Entry Placeholder="Sweet tags"
                    FontSize="18"
                    Margin="5"

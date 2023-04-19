@@ -60,8 +60,12 @@ namespace BreakfastApp.ViewModels
                     Name = breakfastDto.Name,
                     Description = breakfastDto.Description,
                     Image = new Uri(breakfastDto.ImageUri, UriKind.RelativeOrAbsolute),
-                    Savory = breakfastDto.Savory.Split(", ").ToList(),
-                    Sweet = breakfastDto.Sweet.Split(", ").ToList()
+                    Savory = !string.IsNullOrWhiteSpace(breakfastDto.Savory) ? 
+                        breakfastDto.Savory.Split(", ").ToList() : 
+                        new List<string>(),
+                    Sweet = !string.IsNullOrWhiteSpace(breakfastDto.Sweet) ? 
+                        breakfastDto.Sweet.Split(", ").ToList() : 
+                        new List<string>(),
                 };
 
                 Breakfasts.Add(breakfast);

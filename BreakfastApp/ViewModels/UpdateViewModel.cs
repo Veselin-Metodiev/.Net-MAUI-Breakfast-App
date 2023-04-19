@@ -50,9 +50,7 @@ namespace BreakfastApp.ViewModels
             try
             {
                 if (string.IsNullOrWhiteSpace(Name) ||
-                    string.IsNullOrWhiteSpace(Description) ||
-                    string.IsNullOrWhiteSpace(Savory) ||
-                    string.IsNullOrWhiteSpace(Sweet))
+                    string.IsNullOrWhiteSpace(Description))
                 {
                     throw new InvalidDataException();
                 }
